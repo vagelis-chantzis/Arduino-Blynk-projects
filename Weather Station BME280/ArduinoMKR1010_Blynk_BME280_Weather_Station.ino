@@ -33,7 +33,7 @@ void setup() {
     
     status = bme.begin();  //*Try to start the device*
     if (!status) { //*If it is not starting, print message*
-        Serial.println("Could not find a valid BME280 sensor, check wiring!");
+        //Serial.println("Could not find a valid BME280 sensor, check wiring!");
         while (1); //* Go in an endless loop. This prevents the Arduino from calling the loop function*
     }
     
@@ -51,8 +51,9 @@ void sendUptime()
   // You can send anything with any interval using this construction
   // Don't send more that 10 values per second
 
-  Blynk.virtualWrite(V5, bme.readTemperature()); //Vx are the virtual pins that we use on the app interface
+  Blynk.virtualWrite(V3, bme.readHumidity()); //Vx are the virtual pins that we use on the app interface
   Blynk.virtualWrite(V4, bme.readPressure() / 100.0F);
+  Blynk.virtualWrite(V5, bme.readTemperature());  
 }
 
 void loop() { 
